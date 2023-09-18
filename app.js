@@ -49,7 +49,18 @@ const boldText = (text) => {
 };
 
 //WELCOM MSG
-server.post(['/home', '/'], function (req, res) {
+server.get('/' , function(req , res){
+    res.redirect('/home')
+})
+
+// server.get(['/home','/'], function (req, res) {
+//     let bold = boldText("Welcome to our APIs");
+//     console.log(bold);
+//     // res.send(bold);
+//     // console.log('<b>Welcome to our APIs</b>');
+// })
+
+server.get('/home', function (req, res) {
     let bold = boldText("Welcome to our APIs");
     console.log(bold);
     //res.send(bold);
@@ -57,8 +68,8 @@ server.post(['/home', '/'], function (req, res) {
 })
 
 //NOT FOUND (ENDPOINT)
-server.post('**', function (req, res) {
-    res.send('404 NOT FOUND')
+server.get('**', function (req, res) {
+    res.status(404).send("404 Not Found")
 })
 
 server.listen(4000, () => {
